@@ -13,7 +13,10 @@ public class Calculator {
         String[] numbers = extractString.split(regex);
         return Arrays.stream(numbers)
                 .filter(s -> !s.isEmpty())
-                .mapToInt(Integer::parseInt)
+                .mapToInt(s ->{
+                    int number = Integer.parseInt(s);
+                    if(number <= 0) throw new IllegalArgumentException();
+                    return number;})
                 .sum();
     }
 
